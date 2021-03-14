@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="2019211003000215hupeng:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>2019211003000215hupeng</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="hupeng2019211003000215-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="2019211003000215hupeng:war exploded" />
+    </root>
+  </artifact>
+</component>

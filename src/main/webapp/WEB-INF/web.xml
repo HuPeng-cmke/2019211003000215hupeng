@@ -11,4 +11,12 @@
         <servlet-name>hello</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>jdbc</servlet-name>
+        <servlet-class>com.hupeng.week3.register</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>jdbc</servlet-name>
+        <url-pattern>/jdbc</url-pattern>
+    </servlet-mapping>
 </web-app>

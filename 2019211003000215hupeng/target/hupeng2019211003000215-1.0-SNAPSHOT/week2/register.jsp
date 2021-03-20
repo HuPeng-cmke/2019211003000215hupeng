@@ -20,11 +20,10 @@
 
     function all(){
 
-    alert("1111");
     }
 </script>
 <body>
-<form  id="form" method="post" onsubmit="return (test()&&all())">
+<form  id="form" method="post" onsubmit="return (test()&&all())" action="/2019211003000215hupeng_war/jdbc">
     <input type="text" placeholder="Username" name="username"><br/>
     <input type="password" placeholder="password" name="password" id="bbb"><br/>
     <input type="text" name="email" placeholder="Email" id="ccc"><br/>

@@ -19,20 +19,34 @@ public class register extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        PrintWriter printWriter =response.getWriter();
-        PreparedStatement preparedStatement=null;
-        ResultSet resultSet=null;
-            String sql="select * from usertable";
+        Statement statement=null;
+
         try {
-         preparedStatement=connection.prepareStatement(sql);
-         resultSet=preparedStatement.executeQuery();
-        /* while(resultSet.next()) {
-            *//* System.out.println(resultSet.getInt("ID"));
+             statement=connection.createStatement();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        String username=request.getParameter("username");
+        String password=request.getParameter("password");
+        String email=request.getParameter("email");
+        String sex=request.getParameter("sex");
+        String birth=request.getParameter("birth");
+        try {
+        String sql1="insert into usertable(UserName,Password,Email,Gender,Birthdate)" +
+                " values('"+username+"','"+password+"','"+email+"','"+sex+"','"+birth+"')";
+        statement.executeUpdate(sql1);
+        PrintWriter printWriter =response.getWriter();
+            ResultSet resultSet=null;
+
+        String sql="select * from usertable";
+         resultSet=statement.executeQuery(sql);
+         /*while(resultSet.next()) {
              System.out.println(resultSet.getString("UserName"));
-             System.out.println(resultSet.getInt("Password"));
+             System.out.println(resultSet.getString("Password"));
              System.out.println(resultSet.getString("Email"));
              System.out.println(resultSet.getString("Gender"));
-             System.out.println(resultSet.getDate("Birthdate"));*//*
+             System.out.println(resultSet.getString("Birthdate"));
 
          }*/
             printWriter.println("<html>");
@@ -47,25 +61,26 @@ public class register extends HttpServlet {
             printWriter.println("               <td>UserName</td>");
             printWriter.println("               <td>Password</td>");
             printWriter.println("               <td>Email</td>");
+            printWriter.println("               <td>Gender</td>");
             printWriter.println("               <td>Birthdate</td>");
             printWriter.println("           </tr>");
             while(resultSet.next()){
                 printWriter.println("           <tr>");
                 printWriter.println("               <td>"+resultSet.getInt("ID")+"</td>");
                 printWriter.println("               <td>"+resultSet.getString("UserName")+"</td>");
-                printWriter.println("               <td>"+resultSet.getInt("Password")+"</td>");
+                printWriter.println("               <td>"+resultSet.getString("Password")+"</td>");
                 printWriter.println("               <td>"+resultSet.getString("Email")+"</td>");
-                printWriter.println("               <td>"+resultSet.getDate("Birthdate")+"</td>");
+                printWriter.println("               <td>"+resultSet.getString("Gender")+"</td>");
+                printWriter.println("               <td>"+resultSet.getString("Birthdate")+"</td>");
                 printWriter.println("           </tr>");
             }
             printWriter.println("       </table>");
             printWriter.println("   </body>");
             printWriter.println("</html>");
-            connection.close();
+
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-
 
 
 
@@ -73,6 +88,11 @@ public class register extends HttpServlet {
 
     @Override
     public void init() {
+        try {
+            super.init();
+        } catch (ServletException e) {
+            e.printStackTrace();
+        }
         String driver = getServletContext().getInitParameter("driver");
         String url = getServletContext().getInitParameter("url");
         String username = getServletContext().getInitParameter("Username");

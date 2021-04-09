@@ -14,7 +14,7 @@ public class LoginServlet extends HttpServlet {
     Connection connection=null;
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest  request, HttpServletResponse response) throws ServletException, IOException {
         Statement statement=null;
         PrintWriter out= response.getWriter();
         ResultSet result;
@@ -27,14 +27,23 @@ public class LoginServlet extends HttpServlet {
             statement=connection.createStatement();
             result=statement.executeQuery(sql);
            if(result.next()){
-               out.println("<html><body>");
+               /*out.println("<html><body>");
                out.println("<h1>"+"Login Successs!!!"+"</h1>");
                out.println("<h1>"+"Welcome,"+username+"<h1>");
-               out.println("</body></html>");
+               out.println("</body></html>");*/
+               request.setAttribute("id",result.getInt("ID"));
+               request.setAttribute("username",result.getString("UserName"));
+               request.setAttribute("password",result.getString("Password"));
+               request.setAttribute("email",result.getString("Email"));
+               request.setAttribute("gender",result.getString("Gender"));
+               request.setAttribute("birthdate",result.getString("Birthdate"));
+               request.getRequestDispatcher("userInfo.jsp").forward(request,response);
            }else{
-               out.println("<html><body>");
+               /*out.println("<html><body>");
                out.println("<h1>"+"Login Errot!!!"+"</h1>");
-               out.println("</body></html>");
+               out.println("</body></html>");*/
+               request.setAttribute("message","Username or Password error!!!");
+               request.getRequestDispatcher("login.jsp").forward(request,response);
            }
         } catch (SQLException throwables) {
             System.out.println("错了");
@@ -51,12 +60,8 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
-        try {
-            super.init();
-        } catch (ServletException e) {
-            e.printStackTrace();
-        }
-        String driver = getServletContext().getInitParameter("driver");
+                connection=(Connection)getServletContext().getAttribute("connection");
+        /*String driver = getServletContext().getInitParameter("driver");
         String url = getServletContext().getInitParameter("url");
         String username = getServletContext().getInitParameter("Username");
         String password = getServletContext().getInitParameter("Password");
@@ -66,6 +71,6 @@ public class LoginServlet extends HttpServlet {
             System.out.println(connection);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("错了");
-        }
+        }*/
     }
 }

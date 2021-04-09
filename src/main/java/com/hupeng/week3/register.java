@@ -19,7 +19,9 @@ public class register extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        Statement statement=null;
+        getServletContext().setAttribute("connection",connection);
+        response.sendRedirect("/2019211003000215hupeng_war/login.jsp");
+        /*Statement statement=null;
 
         try {
              statement=connection.createStatement();
@@ -41,14 +43,14 @@ public class register extends HttpServlet {
 
         String sql="select * from usertable";
          resultSet=statement.executeQuery(sql);
-         /*while(resultSet.next()) {
+         *//*while(resultSet.next()) {
              System.out.println(resultSet.getString("UserName"));
              System.out.println(resultSet.getString("Password"));
              System.out.println(resultSet.getString("Email"));
              System.out.println(resultSet.getString("Gender"));
              System.out.println(resultSet.getString("Birthdate"));
 
-         }*/
+         }*//*
             printWriter.println("<html>");
             printWriter.println("   <head>");
             printWriter.println("       <meta charset='UTF-8'>");
@@ -80,7 +82,7 @@ public class register extends HttpServlet {
 
         } catch (SQLException throwables) {
             throwables.printStackTrace();
-        }
+        }*/
 
 
 
@@ -100,6 +102,7 @@ public class register extends HttpServlet {
         try {
             Class.forName(driver);
             connection = DriverManager.getConnection(url, username, password);
+
             System.out.println(connection);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("错了");

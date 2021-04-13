@@ -1,8 +1,4 @@
 package com.hupeng.week3;
-
-
-
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -19,8 +15,8 @@ public class register extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        getServletContext().setAttribute("connection",connection);
         response.sendRedirect("/2019211003000215hupeng_war/login.jsp");
+
         /*Statement statement=null;
 
         try {
@@ -95,7 +91,8 @@ public class register extends HttpServlet {
         } catch (ServletException e) {
             e.printStackTrace();
         }
-        String driver = getServletContext().getInitParameter("driver");
+        connection=(Connection) getServletContext().getAttribute("connection");
+        /*String driver = getServletContext().getInitParameter("driver");
         String url = getServletContext().getInitParameter("url");
         String username = getServletContext().getInitParameter("Username");
         String password = getServletContext().getInitParameter("Password");
@@ -106,7 +103,7 @@ public class register extends HttpServlet {
             System.out.println(connection);
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("错了");
-        }
+        }*/
     }
 
 

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.hupeng.model.User" %><%--
   Created by IntelliJ IDEA.
   User: 哈哈哈
   Date: 2021/4/9
@@ -13,27 +13,30 @@
 </head>
 <body>
 <%@include file="header.jsp"%>
+<%
+    User user=(User) request.getAttribute("user");
+%>
 <h1>User info</h1>
 <table>
     <tr>
         <td>Username:</td>
-        <td><%=request.getAttribute("username")%></td>
+        <td><%=user.getUsername()%></td>
     </tr>
     <tr>
         <td>Password:</td>
-        <td><%=request.getAttribute("password")%></td>
+        <td><%=user.getPassword()%></td>
     </tr>
     <tr>
         <td>Email</td>
-        <td><%=request.getAttribute("email")%></td>
+        <td><%=user.getEmail()%></td>
     </tr>
     <tr>
         <td>Gender</td>
-        <td><%=request.getAttribute("gender")%></td>
+        <td><%=user.getGender()%></td>
     </tr>
     <tr>
         <td>Birth Date</td>
-        <td><%=request.getAttribute("birthdate")%></td>
+        <td><%=user.getBirthDate()%></td>
     </tr>
 </table>
 </body>

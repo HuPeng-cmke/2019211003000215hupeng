@@ -1,4 +1,5 @@
-<%@ page import="com.hupeng.model.User" %><%--
+<%@ page import="com.hupeng.model.User" %>
+<%@ page import="java.io.PrintWriter" %><%--
   Created by IntelliJ IDEA.
   User: 哈哈哈
   Date: 2021/4/9
@@ -14,29 +15,38 @@
 <body>
 <%@include file="header.jsp"%>
 <%
-    User user=(User) request.getAttribute("user");
+    User user1=(User) session.getAttribute("user");
 %>
 <h1>User info</h1>
+<%
+    /*Cookie [] allCookies=request.getCookies();
+    for(Cookie c :allCookies){
+        out.println("<br/>"+c.getName()+"-----"+c.getValue());
+    }*/
+%>
 <table>
     <tr>
         <td>Username:</td>
-        <td><%=user.getUsername()%></td>
+        <td><%=user1.getUsername()%></td>
     </tr>
     <tr>
         <td>Password:</td>
-        <td><%=user.getPassword()%></td>
+        <td><%=user1.getPassword()%></td>
     </tr>
     <tr>
         <td>Email</td>
-        <td><%=user.getEmail()%></td>
+        <td><%=user1.getEmail()%></td>
     </tr>
     <tr>
         <td>Gender</td>
-        <td><%=user.getGender()%></td>
+        <td><%=user1.getGender()%></td>
     </tr>
     <tr>
         <td>Birth Date</td>
-        <td><%=user.getBirthDate()%></td>
+        <td><%=user1.getBirthDate()%></td>
+    </tr>
+    <tr>
+        <td><a href="updateUser">updateUser</a></td>
     </tr>
 </table>
 </body>

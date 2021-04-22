@@ -20,9 +20,27 @@
 
     }
 %>
+<%
+    Cookie [] allCookies=request.getCookies();
+    String username="",password="",rememberMeVal="";
+    if(allCookies!=null){
+        for(Cookie c:allCookies){
+            if(c.getName().equals("cUsername")){
+                username=c.getValue();
+            }
+            if(c.getName().equals("cPassword")){
+                password=c.getValue();
+            }
+            if(c.getName().equals("cRememberMe")){
+                rememberMeVal=c.getValue();
+            }
+        }
+    }
+%>
 <form action="/2019211003000215hupeng_war/login" method="post">
-Username: <input type="text" name="username"><br/>
-Password: <input type="password" name="password"><br/>
+Username: <input type="text" name="username" value="<%=username%>"><br/>
+Password: <input type="password" name="password" value="<%=password%>"><br/>
+    <input type="checkbox" name="rememberMe" value="1" <%=rememberMeVal.equals("1")?"checked":""%>/>Remember Me<br/>
     <input type="submit" value="Login">
 </form>
 <%@include file="/footer.jsp" %>

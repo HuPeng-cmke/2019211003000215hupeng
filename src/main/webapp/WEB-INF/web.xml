@@ -30,14 +30,51 @@
         <param-name>Password</param-name>
         <param-value>123456</param-value>
     </context-param>
-    <servlet>
+    <!--<servlet>
         <servlet-name>hello</servlet-name>
         <servlet-class>com.hupeng.week2.HomeWork1</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>hello</servlet-name>
         <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
+    </servlet-mapping>-->
+    <filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.hupeng.filter.AuthFilter</filter-class>
+
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>HelloFilter</filter-name>
+        <filter-class>com.hupeng.filter.HelloFilter</filter-class>
+
+    </filter>
+    <filter-mapping>
+        <filter-name>HelloFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <filter>
+        <filter-name>LoggerFilter</filter-name>
+        <filter-class>com.hupeng.filter.LoggerFilter</filter-class>
+
+    </filter>
+    <filter-mapping>
+        <filter-name>LoggerFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>
+    <!--<filter>
+        <filter-name>AuthFilter</filter-name>
+        <filter-class>com.hupeng.filter.AuthFilter</filter-class>
+
+    </filter>
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/hello</url-pattern>
+    </filter-mapping>-->
+
 <!--    <servlet>-->
 <!--        <servlet-name>jdbc</servlet-name>-->
 <!--        <servlet-class>com.hupeng.week3.register</servlet-class>-->

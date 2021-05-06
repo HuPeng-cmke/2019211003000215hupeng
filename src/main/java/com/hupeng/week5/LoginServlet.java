@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
                  System.out.println("session id-->"+session.getId());
                  session.setMaxInactiveInterval(10);
                  session.setAttribute("user",user);
-                 request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+                 request.getRequestDispatcher("/admin/home").forward(request,response);
              }else {
                  request.setAttribute("message","Username or Password error!!!");
                  request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);

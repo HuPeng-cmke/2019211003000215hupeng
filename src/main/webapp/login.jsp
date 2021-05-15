@@ -11,7 +11,8 @@
     <title>Title</title>
 </head>
 <body>
-<%@include file="/header.jsp" %>
+
+<%--<%@include file="/header.jsp" %>
 <h1>Login</h1>
 <%
     PrintWriter printWriter=response.getWriter();
@@ -43,7 +44,12 @@ Password: <input type="password" name="password" value="<%=password%>"><br/>
     <input type="checkbox" name="rememberMe" value="1" <%=rememberMeVal.equals("1")?"checked":""%>/>Remember Me<br/>
     <input type="submit" value="Login">
 </form>
-<%@include file="/footer.jsp" %>
+<%@include file="/footer.jsp" %>--%>
+<form action="Validate.jsp">
+    Username <input type="text" name="username" /><br>
+    Password <input type="text" name="password" /><br>
+    <input type="submit" value="Login">
 
+</form>
 </body>
 </html>

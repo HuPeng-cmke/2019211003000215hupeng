@@ -4,10 +4,7 @@ import com.hupeng.model.Product;
 import com.hupeng.model.User;
 
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,9 +62,8 @@ public class ProductDao implements  IProductDao{
         String sql="select * from product where ProductId='"+productId+"'";
         PreparedStatement st=con.prepareStatement(sql);
         ResultSet result=st.executeQuery();
-        Product product=null;
+        Product product=new Product();
         while(result.next()) {
-            product = new Product();
             product.setProductId(result.getInt("ProductId"));
             product.setProductName(result.getString("ProductName"));
             product.setProductDescription(result.getString("ProductDescription"));
@@ -176,5 +172,18 @@ public class ProductDao implements  IProductDao{
         }
         return products;
 
+
+    }
+    public byte[] getPictureById(Integer productId,Connection con) throws SQLException{
+        byte[] imBytes=null;
+        String sql="select picture from Product where productId=?";
+        PreparedStatement preparedStatement=con.prepareStatement(sql);
+        preparedStatement.setInt(1,productId);
+        ResultSet rs=preparedStatement.executeQuery();
+        while(rs.next()){
+            Blob blob=rs.getBlob("picture");
+            imBytes=blob.getBytes(1,(int) blob.length());
+        }
+        return imBytes;
     }
 }

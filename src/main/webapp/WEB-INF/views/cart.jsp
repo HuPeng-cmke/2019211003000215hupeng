@@ -38,30 +38,33 @@
 					<c:otherwise>
 					<!-- loop_start -->
 						
-					
+					<c:set var="cal" value="0.0"/>
+						<c:forEach var="c" items="${cart}">
 						<tr>
 							<td class="cart_product">
-								<a href="productDetails?productId=productId "><img src="getImg?id=productId" alt="" style="height: 150px; width: 150px"></a>
+								<a href="productDetails?productId=${c.product.productId} "><img src="getImg?id=${c.product.productId}" alt="" style="height: 150px; width: 150px"></a>
 							</td>
 							<td class="cart_description">
-								<h4><a href="">product Name </a></h4>
-								<p>Web ID: product Id </p>
+								<h4><a href="">${c.product.productName} </a></h4>
+								<p>Web ID: ${c.product.productId} </p>
 							</td>
 							<td class="cart_price">
-								<p>price</p>
+								<p>${c.product.price}</p>
 							</td>
 							<td class="cart_price">
-								<p>quantity</p>
+								<p>${c.quantity}</p>
 								
 							</td>
 							<td class="cart_total">
 							
-								<p id="total" class="cart_total_price">cal total</p>
+								<p id="total" class="cart_total_price">${c.quantity*c.product.price}</p>
 							</td>
 							<td class="cart_delete">
 								<a class="cart_quantity_delete" href="<%=basePath%>cart?action=remove&productId=${c.product.productId}"><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
+							<c:set var="cal" value="${cal*(c.quantity*c.product.price)}" />
+						</c:forEach>
 						cal culate Grand Total
 					<!--loop_end-->
 						</c:otherwise>
@@ -71,7 +74,7 @@
 			</div>
 		</div>
 	</section> <!--/#cart_items-->
-
+<c:if test="${!(empty cart)}">
 	<section id="do_action">
 		<div class="container">
 			
@@ -92,6 +95,7 @@
 			</div>
 		</div>
 	</section><!--/#do_action-->
+</c:if>
 
 	
 

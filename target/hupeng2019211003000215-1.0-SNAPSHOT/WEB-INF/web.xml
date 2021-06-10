@@ -3,6 +3,14 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <filter>
+        <filter-name>abc</filter-name>
+        <filter-class>com.hupeng.lab2.YourNameFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>abc</filter-name>
+        <url-pattern>/lab2/welcome.jsp</url-pattern>
+    </filter-mapping>
     <welcome-file-list>
         <welcome-file>home</welcome-file>
     </welcome-file-list>
@@ -41,7 +49,6 @@
     <filter>
         <filter-name>AuthFilter</filter-name>
         <filter-class>com.hupeng.filter.AuthFilter</filter-class>
-
     </filter>
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>

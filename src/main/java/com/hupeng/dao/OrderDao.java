@@ -199,14 +199,14 @@ public class OrderDao implements IOrderDao {
 
 		List<Order> orderList=new ArrayList<Order>();
 		try {
-			String queryString = "select * from [dbo].[Order]";// userdb.Order for mysql
+			String queryString = "select * from `order`";// userdb.Order for mysql
 			PreparedStatement st = con.prepareStatement(queryString);
 			//st.setObject(1, value);
 			ResultSet	rs = st.executeQuery();
 			while(rs.next()){
 				Order o=new Order();
-				o.setOrderId(rs.getInt("OrderID"));
-				o.setCustomerId(rs.getInt("CustomerID"));
+				o.setOrderId(rs.getInt("OrderId"));
+				o.setCustomerId(rs.getInt("CutomerId"));
 				o.setPaymentId(rs.getInt("PaymentID"));
 				o.setOrderDate(rs.getTimestamp("OrderDate"));
 				o.setFirstName(rs.getString("FirstName"));
